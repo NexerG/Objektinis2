@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <vector>
 
 using std::cout;
 using std::cin;
@@ -11,147 +12,124 @@ using std::setw;
 using std::fixed;
 using std::setprecision;
 
+
+//constanta nusakanti po kiek pazimiu turi mokiniai
+const int kiek=8;
+
 struct Mokinys
 {
-	string vardas[30], pavarde[30];
-	int** paz;
-	int egz[30], kiek[30];
-	double rezult = 0;
+	string vardas, pavarde;
+	int paz[kiek];
+	int egz;				//kintamasis skirtas medianai ir vidurkiui laikyti
+	double rez = 0;
 };
 
-void ivestis(Mokinys& mok, int amount);
-void isvestis(Mokinys& mok, int amount);
-double skaiciavimas(double a, Mokinys& mok, int amount);
-double skaiciavimasVid(Mokinys& mok, int amount);
-void rikiavimas(Mokinys& mok, int amount);
-double skaiciavimasMed(Mokinys& mok, int amount);
-void NDpazymiuIvestis(Mokinys& mok, int amout);
+void ivestis(std::vector<Mokinys>& mok, int ciklas);					//duomenu ivedimas
+void isvestis(std::vector<Mokinys>& mok, int ciklas);					//isvedimas
+double skaiciavimas(double a, std::vector<Mokinys>& mok, int ciklas);	//galutinio pazimio radimas
+double SkVid(std::vector<Mokinys>& mok, int ciklas);					//vidurkio skaiciavimas
+void rikiavimas(std::vector<Mokinys>& mok, int ciklas);					//rikiavimas
+double SkMed(std::vector<Mokinys>& mok, int ciklas);					//medianos skaiciavimas
 
 int main()
 {
-	char Status='y';
-	int amount = 0;
-	Mokinys Mok;
-
-	while (Status == 't')
+	char Status = 't';			//Statuso kintamasis skirtas suziureti kiek bus mokiniu
+	int ciklas = 0;				//kintamasis kuris nusako kurioje vietoje vektoriaus esame
+	std::vector<Mokinys> Mok;
+	while (Status == 't')		//ciklas skirtas mokiniu funkcijoms atlikti
 	{
-		ivestis(Mok, amount);
-		rikiavimas(Mok, amount);
+		ivestis(Mok,ciklas);
+		rikiavimas(Mok, ciklas);
 		cout << "Dar vieno mokinio vidurkis?[t/n]";
 		cin >> Status;
-		amount++;
+		ciklas++;
 	}
-	isvestis(Mok,amount);
+	isvestis(Mok, ciklas);		//f-ja skirta isvedimui
 }
 
-void ivestis(Mokinys& mok, int amount)
+void ivestis(std::vector<Mokinys>& mok, int ciklas)
 {
-	const int c = 30;
 	cout << "Iveskite mokinio varda\n";
-	cin >> mok.vardas[amount];
+	mok.push_back(Mokinys());
+	cin >> mok[ciklas].vardas;
 	cout << "Iveskite mokinio pavarde\n";
-	cin >> mok.pavarde[amount];
-	cout << "Iveskite pazymiu kieki\n";
-	cin >> mok.kiek[amount];
-
-	if (amount == 0)
-		mok.paz = new int* [(mok.kiek[amount] * 2)];
-	mok.paz[amount] = new int[mok.kiek[amount]];
+	cin >> mok[ciklas].pavarde;
 
 	srand(std::time(NULL));
 
-	for (int i = 0; i < mok.kiek[amount]; i++)
+	//namu darbu pazimiu generavimas
+	char status;
+	cout << "Ar norite ivesti namu darbu pazimi? (t/n)\n";
+	int vieta = 0;
+	while(vieta<kiek)
 	{
-		mok.paz[amount][i] = rand() % 10 + 1;
-		if (mok.paz[amount][i] > 10 || mok.paz[amount][i]<1)
-		{
-			cout << "Blogas pazymys, veskite is naujo [1;10]\n";
-			i--;
-		}
+		//cout << "Iveskite namu darbu pazimi\n";
+		mok[ciklas].paz[vieta] = rand() % 10 + 1;
+		//cout << mok[ciklas].paz[vieta] << endl;//debug
+		vieta++;
 	}
-	NDpazymiuIvestis(mok,amount);
 
-	cout << "Iveskite egzamino pazymi [1;10]\n";
-	while (mok.egz[amount] < 0 || mok.egz[amount] > 10)
-	{
-		cin >> mok.egz[amount];
-	}
+	//egzamino pazymio generavimas
+	//cout << "Iveskite egzamino pazimi [1;10]\n";
+	mok[ciklas].egz = rand() % 10 + 1;
+	//cout << mok[ciklas].egz << endl;//debug
 }
 
-void isvestis(Mokinys& mok, int amount)
+void isvestis(std::vector<Mokinys>& mok, int ciklas)
 {
 	cout << "Vardas" << setw(10) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
 	cout << "----------------------------------------------------------" << endl;
-	for (int i = 0; i < amount; i++)
+	for (int i = 0; i < ciklas; i++)
 	{
-		cout << mok.vardas[i] << setw(10) << mok.pavarde[i] << setw(15) << fixed << setprecision(2) << skaiciavimasVid(mok,i) << setw(15) << fixed << setprecision(2) << skaiciavimasMed(mok, i) << endl;
+		cout << mok[i].vardas << setw(10) << mok[i].pavarde << setw(15) << fixed << setprecision(2) << SkVid(mok,i) << setw(15) << fixed << setprecision(2) << SkMed(mok, i) << endl;
 	}
 }
 
-void rikiavimas(Mokinys& mok, int amount)
+void rikiavimas(std::vector<Mokinys>& mok, int ciklas)
 {
 	int temp;
-	for (int i = 0; i < mok.kiek[amount]; i++)
-		for (int j = i + 1; j < mok.kiek[amount]; j++)
+	for (int i = 0; i < kiek; i++)
+		for (int j = i + 1; j < kiek; j++)
 		{
-			if (mok.paz[i] > mok.paz[j])
+			if (mok[ciklas].paz[i] > mok[ciklas].paz[j])
 			{
-				temp = mok.paz[i][amount];
-				mok.paz[i][amount] = mok.paz[j][amount];
-				mok.paz[j][amount] = temp;
+				temp = mok[ciklas].paz[i];
+				mok[ciklas].paz[i] = mok[ciklas].paz[j];
+				mok[ciklas].paz[j] = temp;
 			}
 		}
 }
 
-double skaiciavimasVid(Mokinys& mok, int amount)
+double SkVid(std::vector<Mokinys>& mok, int ciklas)
 {
 	double sum = 0, vid;					//pazymiu suma, vidurkis
-	for (int i = 0; i < mok.kiek[amount]; i++)
+	for (int i = 0; i < kiek; i++)
 	{
-		sum += mok.paz[amount][i];
+		sum += mok[ciklas].paz[i];
 	}
-	vid = sum / mok.kiek[amount];
-	mok.rezult = skaiciavimas(vid, mok, amount);
-	return mok.rezult;
+	vid = sum / kiek;
+	mok[ciklas].rez = skaiciavimas(vid, mok, ciklas);
+	return mok[ciklas].rez;
 }
 
-double skaiciavimas(double paz, Mokinys& mok, int amount)
+double skaiciavimas(double paz, std::vector<Mokinys>& mok, int ciklas)
 {
-	mok.rezult = 0.4 * paz + 0.6 * mok.egz[amount];
-	return mok.rezult;
+	mok[ciklas].rez = 0.4 * paz + 0.6 * mok[ciklas].egz;
+	return mok[ciklas].rez;
 }
 
-double skaiciavimasMed(Mokinys& mok, int amount)
+double SkMed(std::vector<Mokinys>& mok, int ciklas)
 {
-	if (mok.kiek[amount] % 2 == 0)
+	if (kiek % 2 == 0)
 	{
-		double laikMed;
-		laikMed = ((mok.paz[amount][mok.kiek[amount] / 2] + mok.paz[amount][mok.kiek[amount] / 2 - 1]) / 2.0);
-		mok.rezult = skaiciavimas(laikMed, mok, amount);
-		return mok.rezult;
+		double Med; //kintamasis skirtas laikyti apskaiciuota mediana
+		Med = ((mok[ciklas].paz[kiek/ 2] + mok[ciklas].paz[kiek / 2 - 1]) / 2.0);
+		mok[ciklas].rez = skaiciavimas(Med, mok, ciklas);
+		return mok[ciklas].rez;
 	}
 	else
 	{
-		mok.rezult = skaiciavimas(mok.paz[amount][mok.kiek[amount] / 2], mok, amount);
-		return mok.rezult;
-	}
-}
-
-void NDpazymiuIvestis(Mokinys& mok,int amount)
-{
-	char status;
-	int ciklas = mok.kiek[amount];
-	while (ciklas<(mok.kiek[amount])*2)
-	{
-		cout << "Ar norite ivesti namu darbu pazymi? (t/n)\n";
-		cin >> status;
-		if (status == 't')
-		{
-			cin >> mok.paz[amount][ciklas];
-			ciklas++;
-			mok.kiek[amount] = ciklas;
-		}
-		else
-			break;
+		mok[ciklas].rez = skaiciavimas(mok[ciklas].paz[kiek / 2], mok, ciklas);
+		return mok[ciklas].rez;
 	}
 }
