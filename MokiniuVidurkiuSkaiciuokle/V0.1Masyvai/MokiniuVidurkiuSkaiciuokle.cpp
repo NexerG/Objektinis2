@@ -13,9 +13,11 @@ using std::setprecision;
 
 struct Mokinys
 {
-	string vardas[30], pavarde[30];
+	string* vardas;
+	string* pavarde;
 	int** paz;
-	int egz[30], kiek[30];
+	int* egz;
+	int* kiek;
 	double rezult = 0;
 };
 
@@ -26,6 +28,7 @@ double SkVid(Mokinys& mok, int amount);
 void rikiavimas(Mokinys& mok, int amount);
 double SkMed(Mokinys& mok, int amount);
 void NDpazymiuIvestis(Mokinys& mok, int amout);
+Mokinys Dinam(Mokinys& mok, int amount);
 
 int main()
 {
@@ -35,6 +38,7 @@ int main()
 
 	while (Status == 't')
 	{
+		//Dinam(Mok, amount);
 		ivestis(Mok, amount);
 		rikiavimas(Mok, amount);
 		cout << "Dar vieno mokinio vidurkis?[t/n]";
@@ -44,9 +48,37 @@ int main()
 	isvestis(Mok,amount);
 }
 
+Mokinys Dinam(Mokinys& mok, int amount)
+{
+	Mokinys mk;
+	amount++;
+	mk.paz = new int* [amount+1];
+	mk.vardas = new string[amount+1];
+	mk.pavarde = new string[amount+1];
+	mk.kiek = new int[amount+1];
+	mk.egz = new int[amount+1];
+
+	for (int i = 0; i < amount; i++)
+	{
+		mk.vardas[i] = mok.vardas[i];
+		mk.pavarde[i] = mok.pavarde[i];
+		mk.paz[i] = mok.paz[i];
+		mk.egz[i] = mok.egz[i];
+		mk.kiek[i] = mok.kiek[i];
+	}
+	return mk;
+}
+
 void ivestis(Mokinys& mok, int amount)
 {
-	const int c = 30;
+	if (amount == 0)
+	{
+		mok.paz = new int* [amount+1];
+		mok.vardas = new string[amount+1];
+		mok.pavarde = new string[amount+1];
+		mok.kiek = new int[amount+1];
+		mok.egz = new int[amount+1];
+	}
 	cout << "Iveskite mokinio varda\n";
 	cin >> mok.vardas[amount];
 	cout << "Iveskite mokinio pavarde\n";
@@ -54,8 +86,7 @@ void ivestis(Mokinys& mok, int amount)
 	cout << "Iveskite pazymiu kieki\n";
 	cin >> mok.kiek[amount];
 
-	if (amount == 0)
-		mok.paz = new int* [(mok.kiek[amount] * 2)];
+	mok=Dinam(mok, amount);
 	mok.paz[amount] = new int[mok.kiek[amount]];
 
 	srand(std::time(NULL));
@@ -63,6 +94,7 @@ void ivestis(Mokinys& mok, int amount)
 	for (int i = 0; i < mok.kiek[amount]; i++)
 	{
 		mok.paz[amount][i] = rand() % 10 + 1;
+		//cin >> mok.paz[amount][i]<<endl;
 		//if (mok.paz[amount][i] > 10 || mok.paz[amount][i]<1)
 		//{
 		//	cout << "Blogas pazymys, veskite is naujo [1;10]\n";
