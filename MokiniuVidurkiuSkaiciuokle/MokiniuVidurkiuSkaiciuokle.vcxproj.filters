@@ -18,5 +18,37 @@
     <ClCompile Include="MokiniuVidurkiuSkaiciuokle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ivestis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Skaiciavimai.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sortingas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Isvestis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ivestis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MokiniuVidurkiuSkaiciuokle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mokinys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skaiciavimai.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sortingas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Isvestis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
