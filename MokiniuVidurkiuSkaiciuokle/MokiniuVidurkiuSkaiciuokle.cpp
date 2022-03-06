@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <sstream>
 
 using std::cout;
 using std::cin;
@@ -38,7 +39,9 @@ double skaiciavimas(double a, std::vector<Mokinys>& mok, int ciklas);	//galutini
 double SkVid(std::vector<Mokinys>& mok, int ciklas);					//vidurkio skaiciavimas
 void rikiavimas(std::vector<Mokinys>& mok, int ciklas);					//rikiavimas
 double SkMed(std::vector<Mokinys>& mok, int ciklas);					//medianos skaiciavimas
-void RikVarPav();
+void RikVarPav(std::vector<Mokinys>& mok, char rus, int ciklas);
+bool Var(Mokinys mok1, Mokinys mok2) { return (mok1.vardas < mok2.vardas); };
+bool Pav(Mokinys mok1, Mokinys mok2) { return (mok1.pavarde < mok2.pavarde); };
 
 
 int main()
@@ -54,7 +57,7 @@ int main()
 	{
 		while (Status == 't')		//ciklas skirtas mokiniu funkcijoms atlikti
 		{
-			ivestis(Mok, ciklas,ranka,fs);
+			ivestis(Mok, ciklas, ranka, fs);
 			rikiavimas(Mok, ciklas);
 			cout << "Dar vieno mokinio vidurkis?[t/n]";
 			cin >> Status;
@@ -73,20 +76,17 @@ int main()
 	}
 
 	cout << "rusiuoti mokinius pagal pavardes? ar pagal vardus? (p/v)";
-	char rus;		//rusiavimo kintamasis
-	while (rus != 'p' || rus != 'v')
+	char rus = 'n';		//rusiavimo kintamasis
+	cin >> rus;
+	if (rus == 'p')
 	{
-		cin >> rus;
-		if (rus == 'p')
-		{
-			RikVarPav();
-		}
-		else if (rus == 'v')
-		{
-			RikVarPav();
-		}
-		else cout << "ivedete ne toki simboli, veskite is naujo";
+		RikVarPav(Mok,rus,ciklas);
 	}
+	else if (rus == 'v')
+	{
+		RikVarPav(Mok, rus,ciklas);
+	}
+	//else cout << "ivedete ne toki simboli, veskite is naujo";
 	isvestis(Mok, ciklas);		//f-ja skirta isvedimui
 }
 
@@ -143,11 +143,13 @@ void ivestis(std::vector<Mokinys>& mok, int ciklas, int ranka, ifstream& fs)
 
 void isvestis(std::vector<Mokinys>& mok, int ciklas)
 {
+	std::stringstream X;		//kintamasis isvedimui
 	cout << "Vardas" << setw(10) << left << "Pavarde" << setw(20) << left << "Galutinis (Vid.)" << setw(20) << left << "Galutinis (Med.)" << endl;
 	cout << "----------------------------------------------------------" << endl;
 	for (int i = 0; i < ciklas; i++)
 	{
 		cout << mok[i].vardas << setw(20) << right << mok[i].pavarde << setw(20) << right << fixed << setprecision(2) << SkVid(mok, i) << setw(15) << right << fixed << setprecision(2) << SkMed(mok, i) << endl;
+		//cout << X;
 	}
 }
 
@@ -157,9 +159,12 @@ void rikiavimas(std::vector<Mokinys>& mok, int ciklas)
 	sort(mok[ciklas].paz.begin(), mok[ciklas].paz.end());
 }
 
-void RikVarPav()
+void RikVarPav(std::vector<Mokinys>& mok, char rus, int ciklas)
 {
-
+	if (rus == 'p')
+		sort(mok.begin(), mok.end(),Pav);
+	if (rus == 'v')
+		sort(mok.begin(), mok.end(), Var);
 }
 
 double SkVid(std::vector<Mokinys>& mok, int ciklas)
