@@ -9,7 +9,7 @@ int main()
 	int kiek=0;
 	int ranka = 0;
 	char Status = 't';			//Statuso kintamasis skirtas suziureti kiek bus mokiniu
-	int ciklas = 0;				//kintamasis kuris nusako kurioje vietoje vektoriaus esame
+	int ciklas = -1;				//kintamasis kuris nusako kurioje vietoje vektoriaus esame
 	vector<Mokinys> Mok;
 	cout << "ar norite ivesti mokinius ranka (1) ar norite juos paimti is failo (2)?";
 	ifstream fs("kursiokai.txt", ifstream::in);
@@ -27,12 +27,9 @@ int main()
 	}
 	if (ranka == 2)
 	{
-		while (!fs.eof())
-		{
-			ivestis(Mok, ciklas, ranka, fs, kiek);
-			rikiavimas(Mok, ciklas);
-			ciklas++;
-		}
+		ivestis(Mok, ciklas, ranka, fs, kiek);
+		for (int i = 0; i < ciklas; i++)
+			rikiavimas(Mok, i);
 		fs.close();
 	}
 
@@ -48,5 +45,7 @@ int main()
 		RikVarPav(Mok, rus,ciklas);
 	}
 	//else cout << "ivedete ne toki simboli, veskite is naujo";
-	isvestis(Mok, ciklas,kiek);		//f-ja skirta isvedimui
+	vector<Mokinys> Smegenines = SRSmeg(Mok,kiek);
+	vector<Mokinys> Nemoksos = SRNemk(Mok, kiek);
+	isvestis(Smegenines,Nemoksos, ciklas, kiek);		//f-ja skirta isvedimui
 }

@@ -7,7 +7,6 @@
 
 using std::vector;
 using std::string;
-using std::cout;
 
 struct Mokinys
 {
