@@ -4,21 +4,13 @@
 
 void ivestis(std::vector<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs, int& kiek)
 {
-	if (ranka == 1)											//ivestis ranka
+	if (ranka == 2)
 	{
-		mok.push_back(Mokinys());
-		cout << "Iveskite mokinio varda\n";
-		cin >> mok[ciklas].vardas;
-		cout << "Iveskite mokinio pavarde\n";
-		cin >> mok[ciklas].pavarde;
+		if (ciklas == -1)
+			fs.ignore(999, '\n');
 	}
-
-	//namu darbu pazimiu generavimas
 	char status;
 	int vieta = 0;
-	if (ciklas == -1)
-		fs.ignore(999, '\n');
-
 	while (fs >> status)
 	{
 		if (status > 57)
@@ -40,7 +32,7 @@ void ivestis(std::vector<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs, in
 				mok[ciklas].egz = mok[ciklas].paz[vieta - 1];
 			}
 			else
-			{	
+			{
 				mok[ciklas].paz[vieta - 1] = mok[ciklas].paz[vieta - 1] * 10;
 			}
 		}

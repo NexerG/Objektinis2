@@ -13,4 +13,4 @@ using std::fixed;
 using std::endl;
 using std::stringstream;
 
-void isvestis(vector<Mokinys> Smegenines, vector<Mokinys> Nemoksos, int ciklas, int kiek);
+void isvestis(vector<Mokinys> Smegenines, vector<Mokinys> Nemoksos, int ciklas, int kiek, ofstream& ofsGeri, ofstream& ofsBlogi);
