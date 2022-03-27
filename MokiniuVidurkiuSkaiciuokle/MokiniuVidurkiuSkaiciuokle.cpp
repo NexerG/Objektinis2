@@ -81,14 +81,20 @@ int main()
 				RikVarPav(Mok, rus, ciklas);
 			}
 
+			start = clock();
+			Smegenines = SRSmeg(Mok, kiek);
+			Nemoksos = SRNemk(Mok, kiek);
+			end = clock();
+			cout << "Failo su " << Smegenines.size() + Nemoksos.size() << " irasu dalijimo i dvi dalis laikas, panaikinant pradini vektoriu: "
+				<< ((float)end - start) / CLOCKS_PER_SEC << "s" << endl;
+
 			stringstream Isved;
 			Isved << "Smegenines" << i << ".txt";
 			ofstream ofsGeri(Isved.str());
 			Isved.str("");
 			Isved << "Nemoksos" << i << ".txt";
 			ofstream ofsBlogi(Isved.str());
-			Smegenines = SRSmeg(Mok, kiek);
-			Nemoksos = SRNemk(Mok, kiek);
+
 			isvestis(Smegenines, Nemoksos, ciklas, kiek, ofsGeri, ofsBlogi);		//f-ja skirta isvedimui
 			ciklas = -1;
 			Smegenines.clear();
