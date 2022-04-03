@@ -4,7 +4,9 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <deque>
 
+using std::deque;
 using std::vector;
 using std::string;
 

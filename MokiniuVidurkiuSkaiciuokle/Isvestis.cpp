@@ -1,7 +1,7 @@
 #include "Isvestis.h"
 #include <chrono>
 
-void isvestis(vector<Mokinys> Smegenines, vector<Mokinys> Nemoksos, int ciklas, int kiek, ofstream& ofsGeri, ofstream& ofsBlogi)
+void isvestis(deque<Mokinys> Smegenines, deque<Mokinys> Nemoksos, int ciklas, int kiek, ofstream& ofsGeri, ofstream& ofsBlogi)
 {
 	clock_t start, end;
 	start = clock();

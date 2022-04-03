@@ -7,8 +7,8 @@
 
 int main()
 {
-	vector<Mokinys> Smegenines;	//Geruciu vektorius
-	vector<Mokinys> Nemoksos;	//nemoksu vektorius
+	deque<Mokinys> Smegenines;	//Geruciu vektorius
+	deque<Mokinys> Nemoksos;	//nemoksu vektorius
 	clock_t ProgStart, ProgEnd;	//programos laiko matavimo kintamieji
 	ProgStart = clock();
 	clock_t start, end;			//segmentu laiko matavimo kintamieji
@@ -16,7 +16,7 @@ int main()
 	int ranka = 0;
 	char Status = 't';			//Statuso kintamasis skirtas suziureti kiek bus mokiniu
 	int ciklas = -1;				//kintamasis kuris nusako kurioje vietoje vektoriaus esame
-	vector<Mokinys> Mok;
+	deque<Mokinys> Mok;
 	cout << "ar norite generuoti (prasideda nuo 1000) mokinius (1) ar norite juos paimti is failo (2)?";
 	ifstream fs("kursiokai.txt", ifstream::in);
 	cin >> ranka;
@@ -51,7 +51,7 @@ int main()
 			generacija.close();
 			end = clock();
 			cout << "Failu generavimas su " << StudSkc << " studentais uztruko: " << ((float)end - start) / CLOCKS_PER_SEC << "s" << endl;
-			cout << "Ar generuoti " << StudSkc * 10 << " studentu informacija? (0/1)" << endl;
+			cout << "Ar papildomai generuoti " << StudSkc * 10 << " studentu informacija? (0/1)" << endl;
 			cin >> dummy;
 			if (!dummy)
 				break;
@@ -80,7 +80,6 @@ int main()
 			{
 				RikVarPav(Mok, rus, ciklas);
 			}
-
 			start = clock();
 			Smegenines = SRSmeg(Mok, kiek);
 			Nemoksos = SRNemk(Mok, kiek);
@@ -139,5 +138,5 @@ int main()
 		ofsGeri.close();
 	}
 	ProgEnd = clock();
-	cout << "Programos veikimo laikas: " << ((float)end - start) / CLOCKS_PER_SEC << "s" << endl;
+	cout << "Programos veikimo laikas: " << ((float)ProgEnd - ProgStart) / CLOCKS_PER_SEC << "s" << endl;
 }

@@ -2,7 +2,7 @@
 #include <vector>
 #include "Ivestis.h"
 
-void ivestis(std::vector<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs, int& kiek)
+void ivestis(deque<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs, int& kiek)
 {
 	if (ranka == 2)
 	{

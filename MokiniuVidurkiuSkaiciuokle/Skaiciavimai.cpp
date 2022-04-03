@@ -1,6 +1,6 @@
 #include "Skaiciavimai.h"
 
-double SkVid(vector<Mokinys>& mok, int ciklas, int kiek)
+double SkVid(deque<Mokinys>& mok, int ciklas, int kiek)
 {
 	double sum = 0, vid;								//pazymiu suma, vidurkis
 	for (int i = 0; i < kiek; i++)
@@ -12,13 +12,13 @@ double SkVid(vector<Mokinys>& mok, int ciklas, int kiek)
 	return mok[ciklas].rez;
 }
 
-double skaiciavimas(double paz, std::vector<Mokinys>& mok, int ciklas)
+double skaiciavimas(double paz, deque<Mokinys>& mok, int ciklas)
 {
 	mok[ciklas].rez = 0.4 * paz + 0.6 * mok[ciklas].egz;
 	return mok[ciklas].rez;
 }
 
-double SkMed(std::vector<Mokinys>& mok, int ciklas, int kiek)
+double SkMed(deque<Mokinys>& mok, int ciklas, int kiek)
 {
 	if (kiek % 2 == 0)
 	{
