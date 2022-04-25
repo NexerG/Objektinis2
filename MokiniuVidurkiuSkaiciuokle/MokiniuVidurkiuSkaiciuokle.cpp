@@ -43,15 +43,15 @@ int main()
 			generacija.close();
 		}
 	}
-	deque<Mokinys> Smegenines;	//Geruciu vektorius
-	deque<Mokinys> Nemoksos;	//nemoksu vektorius
+	list<Mokinys> Smegenines;	//Geruciu vektorius
+	list<Mokinys> Nemoksos;		//nemoksu vektorius
 	clock_t ProgStart, ProgEnd;	//programos laiko matavimo kintamieji
 	clock_t start, end;
 	//clock_t start, end;			//segmentu laiko matavimo kintamieji
 	int kiek = 0;
 	char Status = 't';			//Statuso kintamasis skirtas suziureti kiek bus mokiniu
 	int ciklas = 0;				//kintamasis kuris nusako kurioje vietoje vektoriaus esame
-	deque<Mokinys> Mok;
+	list<Mokinys> Mok;
 	ifstream fs("kursiokai.txt", ifstream::in);
 
 	ProgStart = clock();
@@ -67,26 +67,23 @@ int main()
 			ifstream fsb(KursSaras.str());
 
 			start = clock();
-			ivestis(Mok, ciklas, ranka, fsb, kiek);
+			ivestis(Mok, ciklas, ranka, fsb);
 			end = clock();
 			cout << "Failo su " << Mok.size() << " elementu nuskaitymo laikas: " << ((float)end - start) / CLOCKS_PER_SEC << "s" << endl;
-			for (int j = 0; j < ciklas; j++)
-				rikiavimas(Mok, j);
 			fsb.close();
 			if (rus == 'p')
 			{
-				RikVarPav(Mok, rus, ciklas);
+				RikVarPav(Mok, rus);
 			}
 			else if (rus == 'v')
 			{
-				RikVarPav(Mok, rus, ciklas);
+				RikVarPav(Mok, rus);
 			}
 			start = clock();
 			SRSmegNemk(Mok, kiek, Smegenines, Nemoksos);
 			end = clock();
 			cout << "Failo su " << Smegenines.size() + Nemoksos.size() << " irasu dalijimo i dvi dalis laikas, panaikinant pradini vektoriu: "
 				<< ((float)end - start) / CLOCKS_PER_SEC << "s" << endl;
-
 			stringstream Isved;
 			Isved << "Smegenines" << i << ".txt";
 			ofstream ofsGeri(Isved.str());
@@ -96,6 +93,8 @@ int main()
 
 			isvestis(Smegenines, Nemoksos, ciklas, kiek, ofsGeri, ofsBlogi);		//f-ja skirta isvedimui
 			ciklas = 0;
+			Clearinimas(Smegenines);
+			Clearinimas(Nemoksos);
 			Smegenines.clear();
 			Nemoksos.clear();
 			ofsGeri.close();
@@ -105,19 +104,17 @@ int main()
 	if (ranka == 2)
 	{
 		start = clock();
-		ivestis(Mok, ciklas, ranka, fs, kiek);
+		ivestis(Mok, ciklas, ranka, fs);
 		end = clock();
 		cout << "Failo su " << Mok.size() << " elementu nuskaitymo laikas: " << ((float)end - start) / CLOCKS_PER_SEC << "s" << endl;
-		for (int i = 0; i < ciklas; i++)
-			rikiavimas(Mok, i);
 		fs.close();
 		if (rus == 'p')
 		{
-			RikVarPav(Mok, rus, ciklas);
+			RikVarPav(Mok, rus);
 		}
 		else if (rus == 'v')
 		{
-			RikVarPav(Mok, rus, ciklas);
+			RikVarPav(Mok, rus);
 		}
 		start = clock();
 		SRSmegNemk(Mok, kiek, Smegenines, Nemoksos);
@@ -133,4 +130,12 @@ int main()
 	}
 	ProgEnd = clock();
 	cout << "Programos veikimo laikas: " << ((float)ProgEnd - ProgStart) / CLOCKS_PER_SEC << "s" << endl;
+}
+
+void Clearinimas(list<Mokinys>& mok)
+{
+	/*for (list<Mokinys>::iterator it = mok.begin(); it != mok.end(); it++)
+	{
+		delete (void*)it;
+	}*/
 }

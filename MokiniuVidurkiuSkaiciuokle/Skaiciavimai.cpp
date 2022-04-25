@@ -1,35 +1,21 @@
 #include "Skaiciavimai.h"
 
-double SkVid(deque<Mokinys>& mok, int ciklas, int kiek)
+double SkVid(Mokinys &mok)
 {
 	double sum = 0, vid;								//pazymiu suma, vidurkis
-	for (int i = 0; i < kiek; i++)
+	//for (int i = 0; i < kiek; i++)
+	for (vector<int>::iterator vit = mok.paz.begin(); vit != mok.paz.end(); vit++)
 	{
-		sum += mok[ciklas].paz[i];
+		sum += (double)*vit;
+		//sum += mok[ciklas].paz[i];
 	}
-	vid = sum / kiek;
-	mok[ciklas].rez = skaiciavimas(vid, mok, ciklas);
-	return mok[ciklas].rez;
+	vid = sum / mok.paz.size();
+	mok.rez = skaiciavimas(vid, mok);
+	return mok.rez;
 }
 
-double skaiciavimas(double paz, deque<Mokinys>& mok, int ciklas)
+double skaiciavimas(double paz, Mokinys& mok)
 {
-	mok[ciklas].rez = 0.4 * paz + 0.6 * mok[ciklas].egz;
-	return mok[ciklas].rez;
-}
-
-double SkMed(deque<Mokinys>& mok, int ciklas, int kiek)
-{
-	if (kiek % 2 == 0)
-	{
-		double Med; //kintamasis skirtas laikyti apskaiciuota mediana
-		Med = ((mok[ciklas].paz[kiek / 2] + mok[ciklas].paz[kiek / 2 - 1]) / 2.0);
-		mok[ciklas].rez = skaiciavimas(Med, mok, ciklas);
-		return mok[ciklas].rez;
-	}
-	else
-	{
-		mok[ciklas].rez = skaiciavimas(mok[ciklas].paz[kiek / 2], mok, ciklas);
-		return mok[ciklas].rez;
-	}
+	mok.rez = 0.4 * paz + 0.6 * mok.egz;
+	return mok.rez;
 }

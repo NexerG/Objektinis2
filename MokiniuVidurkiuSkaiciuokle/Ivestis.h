@@ -6,4 +6,4 @@ using std::ifstream;
 using std::cout;
 using std::cin;
 
-void ivestis(deque<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs, int &kiek);
+void ivestis(list<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs);

@@ -2,8 +2,11 @@
 #include <vector>
 #include "Ivestis.h"
 
-void ivestis(deque<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs, int& kiek)
+void ivestis(list<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs)
 {
+	std::list<Mokinys>::iterator it;
+	it = mok.begin();
+
 	if (ranka == 2)
 	{
 		if (ciklas == -1)
@@ -16,23 +19,21 @@ void ivestis(deque<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs, int& kie
 	string status,Nusk;
 	while (std::getline(sstr, status))
 	{
+		Mokinys dummy;
 		std::stringstream X(status);
-		mok.push_back(Mokinys());
 
 		std::getline(X, Nusk, ' ');
-		mok[ciklas].vardas = Nusk;
+		dummy.vardas = Nusk;
+
 		std::getline(X, Nusk, ' ');
-		mok[ciklas].pavarde = Nusk;
+		dummy.pavarde = Nusk;
 
 		while (std::getline(X, Nusk, ' '))
 		{
-			mok[ciklas].paz.push_back(std::stoi(Nusk));
+			dummy.paz.push_back(std::stoi(Nusk));
 		}
 		ciklas++;
+		dummy.egz = dummy.paz[dummy.paz.size() - 1];
+		mok.push_back(dummy);
 	}
-	for (int i = 0; i < mok.size()-1; i++)
-	{
-		mok[i].egz = mok[i].paz[mok[i].paz.size()-1];
-	}
-	kiek = mok[1].paz.size();
 }
