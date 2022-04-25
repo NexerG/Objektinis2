@@ -5,9 +5,11 @@
 #include <iostream>
 #include <sstream>
 #include <deque>
+#include <list>
 
 using std::deque;
 using std::vector;
+using std::list;
 using std::string;
 
 struct Mokinys

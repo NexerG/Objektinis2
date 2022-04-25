@@ -19,25 +19,19 @@ void RikVarPav(deque<Mokinys>& mok, char rus, int ciklas)
 		sort(mok.begin(), mok.end(), Var);
 }
 
-deque<Mokinys> SRSmeg(deque<Mokinys>& mok, int kiek)	//studentu su vidurkiais daugiau negu 5 isrinkimas
+void SRSmegNemk(deque<Mokinys>& mok, int kiek, deque<Mokinys>& Smegenines, deque<Mokinys>& Nemoksos)	//studentu su vidurkiais daugiau negu 5 isrinkimas
 {
-	deque<Mokinys> Smegenines;
-	for (int i = 0; i < mok.size(); i++)
+	for (int i = mok.size()-1; i > 0; i--)
 	{
 		if (SkVid(mok, i, kiek) >= 5)
 		{
 			Smegenines.push_back(mok[i]);		//taip idedama iskarto reiksme
-			mok.erase(mok.begin()+i);			//labai letas, nes perkuriamas masyvas/ galima naudoti POP kad paskutini isimt
-			i--;
+			mok.pop_back();			//labai letas, nes perkuriamas masyvas/ galima naudoti POP kad paskutini isimt
+		}
+		else
+		{
+			Nemoksos.push_back(mok[i]);
+			mok.pop_back();
 		}
 	}
-	return Smegenines;
-}
-
-deque<Mokinys> SRNemk(deque<Mokinys>& mok, int kiek)	//studentu su vidurkiais maziau negu 5 isrinkimas
-{
-	deque<Mokinys> Nemoksos;
-	Nemoksos = mok;
-	mok.clear();
-	return Nemoksos;
 }

@@ -9,33 +9,30 @@ void ivestis(deque<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs, int& kie
 		if (ciklas == -1)
 			fs.ignore(999, '\n');
 	}
-	char status;
-	int vieta = 0;
-	while (fs >> status)
+
+	std::stringstream sstr;
+	sstr << fs.rdbuf();
+	
+	string status,Nusk;
+	while (std::getline(sstr, status))
 	{
-		if (status > 57)
+		std::stringstream X(status);
+		mok.push_back(Mokinys());
+
+		std::getline(X, Nusk, ' ');
+		mok[ciklas].vardas = Nusk;
+		std::getline(X, Nusk, ' ');
+		mok[ciklas].pavarde = Nusk;
+
+		while (std::getline(X, Nusk, ' '))
 		{
-			ciklas++;
-			mok.push_back(Mokinys());
-			fs.putback(status);
-			fs >> mok[ciklas].vardas >> mok[ciklas].pavarde;
-			vieta = 0;
+			mok[ciklas].paz.push_back(std::stoi(Nusk));
 		}
-		mok[ciklas].paz.push_back(vieta);
-		if (status != '\n' && status != ' ' && status <= 57)
-		{
-			if (status != '0')
-			{
-				mok[ciklas].paz.push_back(vieta);
-				mok[ciklas].paz[vieta] = std::stoi(&status);
-				vieta++;
-				mok[ciklas].egz = mok[ciklas].paz[vieta - 1];
-			}
-			else
-			{
-				mok[ciklas].paz[vieta - 1] = mok[ciklas].paz[vieta - 1] * 10;
-			}
-		}
+		ciklas++;
 	}
-	kiek = vieta - 1;
+	for (int i = 0; i < mok.size()-1; i++)
+	{
+		mok[i].egz = mok[i].paz[mok[i].paz.size()-1];
+	}
+	kiek = mok[1].paz.size();
 }
