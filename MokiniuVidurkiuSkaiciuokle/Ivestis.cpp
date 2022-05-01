@@ -1,6 +1,9 @@
 #include <fstream>
 #include <vector>
+#include <chrono>
 #include "Ivestis.h"
+
+using std::endl;
 
 void ivestis(list<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs)
 {
@@ -14,7 +17,10 @@ void ivestis(list<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs)
 	}
 
 	std::stringstream sstr;
+	clock_t start = clock();
 	sstr << fs.rdbuf();
+	clock_t end = clock();
+
 	
 	string status,Nusk;
 	while (std::getline(sstr, status))
@@ -36,4 +42,5 @@ void ivestis(list<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs)
 		dummy.egz = dummy.paz[dummy.paz.size() - 1];
 		mok.push_back(dummy);
 	}
+	cout << "Failo su " << mok.size() << " elementu nuskaitymo laikas: " << ((float)end - start) / CLOCKS_PER_SEC << "s" << endl;
 }

@@ -66,10 +66,7 @@ int main()
 			KursSaras << "kursiokai" << i << ".txt";
 			ifstream fsb(KursSaras.str());
 
-			start = clock();
 			ivestis(Mok, ciklas, ranka, fsb);
-			end = clock();
-			cout << "Failo su " << Mok.size() << " elementu nuskaitymo laikas: " << ((float)end - start) / CLOCKS_PER_SEC << "s" << endl;
 			fsb.close();
 			if (rus == 'p')
 			{
@@ -93,8 +90,6 @@ int main()
 
 			isvestis(Smegenines, Nemoksos, ciklas, kiek, ofsGeri, ofsBlogi);		//f-ja skirta isvedimui
 			ciklas = 0;
-			Clearinimas(Smegenines);
-			Clearinimas(Nemoksos);
 			Smegenines.clear();
 			Nemoksos.clear();
 			ofsGeri.close();
@@ -130,12 +125,4 @@ int main()
 	}
 	ProgEnd = clock();
 	cout << "Programos veikimo laikas: " << ((float)ProgEnd - ProgStart) / CLOCKS_PER_SEC << "s" << endl;
-}
-
-void Clearinimas(list<Mokinys>& mok)
-{
-	/*for (list<Mokinys>::iterator it = mok.begin(); it != mok.end(); it++)
-	{
-		delete (void*)it;
-	}*/
 }
