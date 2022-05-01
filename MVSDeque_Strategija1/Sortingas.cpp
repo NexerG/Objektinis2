@@ -7,7 +7,7 @@ bool Var(Mokinys mok1, Mokinys mok2) { return (mok1.vardas < mok2.vardas); };	//
 bool Pav(Mokinys mok1, Mokinys mok2) { return (mok1.pavarde < mok2.pavarde); };	//rikiavimo boolean
 bool Pazimys(Mokinys mok1, Mokinys mok2) { return (mok1.rez < mok2.rez); };	//rikiavimo boolean
 
-void RikVarPav(list<Mokinys>& mok, char rus)
+void RikVarPav(deque<Mokinys>& mok, char rus)
 {
 	if (rus == 'p')
 		sort(mok.begin(), mok.end(), Pav);
@@ -15,21 +15,20 @@ void RikVarPav(list<Mokinys>& mok, char rus)
 		sort(mok.begin(), mok.end(), Var);
 }
 
-void SRSmegNemk(list<Mokinys>& mok, int kiek, list<Mokinys>& Smegenines, list<Mokinys>& Nemoksos)	//studentu su vidurkiais daugiau negu 5 isrinkimas
+void SRSmegNemk(deque<Mokinys>& mok, int kiek, deque<Mokinys>& Smegenines, deque<Mokinys>& Nemoksos)	//studentu su vidurkiais daugiau negu 5 isrinkimas
 {
-	mok.sort(Pazimys);
-	list<Mokinys>::iterator it = mok.end(); it--;
-	for (it; it != mok.begin(); it--)
+	sort(mok.begin(), mok.end(), Pazimys);
+	for (deque<Mokinys>::iterator it=mok.begin(); it != mok.end(); it++)
 	{
 		if (SkVid(*it) >= 5)
 		{
 			Smegenines.push_back(*it);		//taip idedama iskarto reiksme
-			mok.pop_back();
+			//mok.pop_back();
 		}
 		else
 		{
 			Nemoksos.push_back(*it);
-			mok.pop_back();			
+			//mok.pop_back();			
 		}
 	}
 	mok.clear();
