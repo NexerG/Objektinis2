@@ -13,4 +13,4 @@ using std::fixed;
 using std::endl;
 using std::stringstream;
 
-void isvestis(deque<Mokinys> Smegenines, deque<Mokinys> Nemoksos, int ciklas, int kiek, ofstream& ofsGeri, ofstream& ofsBlogi);
+void isvestis(deque<Mokinys2> Smegenines, deque<Mokinys2> Nemoksos, int ciklas, int kiek, ofstream& ofsGeri, ofstream& ofsBlogi);

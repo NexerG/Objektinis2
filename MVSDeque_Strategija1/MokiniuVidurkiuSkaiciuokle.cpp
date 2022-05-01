@@ -43,15 +43,15 @@ int main()
 			generacija.close();
 		}
 	}
-	deque<Mokinys> Smegenines;	//Geruciu vektorius
-	deque<Mokinys> Nemoksos;		//nemoksu vektorius
+	deque<Mokinys2> Smegenines;	//Geruciu vektorius
+	deque<Mokinys2> Nemoksos;		//nemoksu vektorius
 	clock_t ProgStart, ProgEnd;	//programos laiko matavimo kintamieji
 	clock_t start, end;
 	//clock_t start, end;			//segmentu laiko matavimo kintamieji
 	int kiek = 0;
 	char Status = 't';			//Statuso kintamasis skirtas suziureti kiek bus mokiniu
 	int ciklas = 0;				//kintamasis kuris nusako kurioje vietoje vektoriaus esame
-	deque<Mokinys> Mok;
+	deque<Mokinys2> Mok;
 	ifstream fs("kursiokai.txt", ifstream::in);
 
 	ProgStart = clock();

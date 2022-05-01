@@ -9,5 +9,5 @@
 using std::deque;
 using std::sort;
 
-void RikVarPav(deque<Mokinys>& mok, char rus);
-void SRSmegNemk(deque<Mokinys>& mok, int kiek, deque<Mokinys>& Smegenines, deque<Mokinys>& Nemoksos);	//studentu su vidurkiais daugiau negu 5 isrinkimas
+void RikVarPav(deque<Mokinys2>& mok, char rus);
+void SRSmegNemk(deque<Mokinys2>& mok, int kiek, deque<Mokinys2>& Smegenines, deque<Mokinys2>& Nemoksos);	//studentu su vidurkiais daugiau negu 5 isrinkimas

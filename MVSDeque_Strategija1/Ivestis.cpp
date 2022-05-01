@@ -5,9 +5,9 @@
 
 using std::endl;
 
-void ivestis(deque<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs)
+void ivestis(deque<Mokinys2>& mok, int& ciklas, int ranka, ifstream& fs)
 {
-	std::deque<Mokinys>::iterator it;
+	std::deque<Mokinys2>::iterator it;
 	it = mok.begin();
 
 	if (ranka == 2)
@@ -25,7 +25,7 @@ void ivestis(deque<Mokinys>& mok, int& ciklas, int ranka, ifstream& fs)
 	string status,Nusk;
 	while (std::getline(sstr, status))
 	{
-		Mokinys dummy;
+		Mokinys2 dummy;
 		std::stringstream X(status);
 
 		std::getline(X, Nusk, ' ');
