@@ -1,7 +1,7 @@
 #include "Isvestis.h"
 #include <chrono>
 
-void isvestis(deque<Mokinys2> Smegenines, deque<Mokinys2> Nemoksos, int ciklas, int kiek, ofstream& ofsGeri, ofstream& ofsBlogi)
+void isvestis(deque<Mokinys2>& Smegenines, deque<Mokinys2>& Nemoksos, int ciklas, int kiek, ofstream& ofsGeri, ofstream& ofsBlogi)
 {
 	ofsGeri << "Vardas" << setw(10) << left << "Pavarde" << setw(20) << left << "Galutinis (Vid.)" << setw(20) << left << "Galutinis (Med.)" << endl;
 	ofsGeri << "----------------------------------------------------------" << endl;

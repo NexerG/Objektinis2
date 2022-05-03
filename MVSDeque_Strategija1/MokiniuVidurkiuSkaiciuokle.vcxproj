@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ivestis.cpp" />
+    <ClCompile Include="Mok.cpp" />
     <ClCompile Include="MokiniuVidurkiuSkaiciuokle.cpp" />
     <ClCompile Include="Skaiciavimai.cpp" />
     <ClCompile Include="Sortingas.cpp" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Isvestis.h" />
+    <ClInclude Include="Mok.h" />
     <ClInclude Include="Skaiciavimai.h" />
     <ClInclude Include="Ivestis.h" />
     <ClInclude Include="MokiniuVidurkiuSkaiciuokle.h" />

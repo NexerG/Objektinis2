@@ -1,6 +1,6 @@
 #include "Skaiciavimai.h"
 
-double SkVid(Mokinys2 &mok)
+double SkVid(Mokinys2 mok)
 {
 	double sum = 0, vid;					//pazymiu suma, vidurkis
 	for (deque<int>::iterator vit = mok.paz.begin(); vit != mok.paz.end(); vit++)
@@ -13,7 +13,7 @@ double SkVid(Mokinys2 &mok)
 	return mok.rez;
 }
 
-double skaiciavimas(double paz, Mokinys2& mok)
+double skaiciavimas(double paz, Mokinys2 mok)
 {
 	mok.rez = 0.4 * paz + 0.6 * mok.egz;
 	return mok.rez;

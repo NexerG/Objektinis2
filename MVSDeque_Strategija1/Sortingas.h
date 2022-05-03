@@ -5,6 +5,7 @@
 #include <iostream>
 #include <algorithm>
 #include <deque>
+#include "Mok.h"
 
 using std::deque;
 using std::sort;

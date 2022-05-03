@@ -1,5 +1,6 @@
 #pragma once
 #include "Mokinys.h"
+#include "Mok.h"
 #include <fstream>
 
 using std::ifstream;
