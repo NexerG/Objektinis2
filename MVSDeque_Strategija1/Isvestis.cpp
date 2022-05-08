@@ -7,7 +7,7 @@ void isvestis(deque<Mokinys2>& Smegenines, deque<Mokinys2>& Nemoksos, int ciklas
 	ofsGeri << "----------------------------------------------------------" << endl;
 	for (deque<Mokinys2>::iterator it= Smegenines.begin();it!=Smegenines.end(); it++)
 	{
-		ofsGeri << it->vardas << setw(20) << right << it->pavarde
+		ofsGeri << it->getVar() << setw(20) << right << it->getPav()
 			<< setw(20) << right << fixed << setprecision(2) << SkVid(*it) << endl;
 	}
 
@@ -15,8 +15,8 @@ void isvestis(deque<Mokinys2>& Smegenines, deque<Mokinys2>& Nemoksos, int ciklas
 	ofsBlogi << "----------------------------------------------------------" << endl;
 	for (deque<Mokinys2>::iterator it = Nemoksos.begin(); it != Nemoksos.end(); it++)
 	{
-		ofsBlogi << it->vardas << setw(20) << right << it->pavarde
-			<< setw(20) << right << fixed << setprecision(2) << SkVid(*it)<<endl;
+		ofsBlogi << it->getVar() << setw(20) << right << it->getPav()
+			<< setw(20) << right << fixed << setprecision(2) << SkVid(*it) << endl;
 	}
 	//cout << Nemoksos.size() << endl << Smegenines.size();		//debug
 }
