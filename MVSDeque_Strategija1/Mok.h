@@ -69,6 +69,19 @@ public:
 		rez = rezultatas;
 	}
 
+	Mokinys2(const Mokinys2& t)
+	{
+		//kopijavimo konstruktorius
+		//std::cout << "kopijavimo konstruktorius";
+	}
+
+	Mokinys2& operator = (const Mokinys2& t)
+	{
+		//assignment operatorius
+		//std::cout << "priskyrimo operatorius";
+		return *this;
+	}
+
 	Mokinys2();
 	~Mokinys2();
 
