@@ -6,13 +6,14 @@
 #include <sstream>
 #include <deque>
 #include <list>
+#include "Zmogus.h"
 
 using std::deque;
 using std::vector;
 using std::list;
 using std::string;
 
-class Mokinys2
+class Mokinys2:Zmogus
 {
 public:
 	//vardo get/set
