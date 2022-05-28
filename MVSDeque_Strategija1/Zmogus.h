@@ -2,6 +2,6 @@
 class Zmogus
 {
 public:
-	virtual void Zmogus1() = 0;
+	virtual void As() = 0;
 };
 
