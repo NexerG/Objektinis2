@@ -16,6 +16,11 @@ using std::string;
 class Mokinys2:Zmogus
 {
 public:
+	void As()
+	{
+		//su __super galima overridinti values is parent klases
+		//__super::Kintamasis();
+	}
 	//vardo get/set
 	string getVar()
 	{

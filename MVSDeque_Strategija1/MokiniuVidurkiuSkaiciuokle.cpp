@@ -9,6 +9,11 @@ using namespace std::chrono;
 
 int main()
 {
+	Mokinys2 Bandymas;
+	Mokinys2 dummy(Bandymas);
+
+	//Zmogus asd;
+
 	int gener,ranka;
 	cout << "ar generuoti failus? (0/1)";
 	cin >> gener;

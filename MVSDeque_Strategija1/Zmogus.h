@@ -1,6 +1,7 @@
 #pragma once
 class Zmogus
 {
-	virtual void Zmogus1();
+public:
+	virtual void Zmogus1() = 0;
 };
 
