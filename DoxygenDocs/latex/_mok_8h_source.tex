@@ -1,0 +1,107 @@
+\hypertarget{_mok_8h_source}{}\doxysection{Mok.\+h}
+\label{_mok_8h_source}\index{H:/Creative/VS/Objektinis/Obj2/MVSDeque\_Strategija1/Mok.h@{H:/Creative/VS/Objektinis/Obj2/MVSDeque\_Strategija1/Mok.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <iomanip>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <deque>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}Zmogus.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{using }std::deque;}
+\DoxyCodeLine{12 \textcolor{keyword}{using }std::vector;}
+\DoxyCodeLine{13 \textcolor{keyword}{using }std::list;}
+\DoxyCodeLine{14 \textcolor{keyword}{using }std::string;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_mokinys2}{Mokinys2}}:\mbox{\hyperlink{class_zmogus}{Zmogus}}}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18 \textcolor{keyword}{public}:}
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} As()}
+\DoxyCodeLine{20     \{}
+\DoxyCodeLine{21         \textcolor{comment}{//su \_\_super galima overridinti values is parent klases}}
+\DoxyCodeLine{22         \textcolor{comment}{//\_\_super::Kintamasis();}}
+\DoxyCodeLine{23     \}}
+\DoxyCodeLine{24     \textcolor{comment}{//vardo get/set}}
+\DoxyCodeLine{25     \textcolor{keywordtype}{string} getVar()}
+\DoxyCodeLine{26     \{}
+\DoxyCodeLine{27         \textcolor{keywordflow}{return} vardas;}
+\DoxyCodeLine{28     \}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} setVar(\textcolor{keywordtype}{string} var)}
+\DoxyCodeLine{30     \{}
+\DoxyCodeLine{31         vardas = var;}
+\DoxyCodeLine{32     \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{comment}{//pavardes get/set}}
+\DoxyCodeLine{35     \textcolor{keywordtype}{string} getPav()}
+\DoxyCodeLine{36     \{}
+\DoxyCodeLine{37         \textcolor{keywordflow}{return} pavarde;}
+\DoxyCodeLine{38     \}}
+\DoxyCodeLine{39     \textcolor{keywordtype}{void} setPav(\textcolor{keywordtype}{string} pav)}
+\DoxyCodeLine{40     \{}
+\DoxyCodeLine{41         pavarde = pav;}
+\DoxyCodeLine{42     \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{comment}{//pazymiai}}
+\DoxyCodeLine{45     deque<int> getpazymiai()}
+\DoxyCodeLine{46     \{}
+\DoxyCodeLine{47         \textcolor{keywordflow}{return} paz;}
+\DoxyCodeLine{48     \}}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} setpaz(deque<int> pazymiai)}
+\DoxyCodeLine{50     \{}
+\DoxyCodeLine{51         paz = pazymiai;}
+\DoxyCodeLine{52     \}}
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} pushPaz(\textcolor{keywordtype}{int} pazymiai)}
+\DoxyCodeLine{54     \{}
+\DoxyCodeLine{55         paz.push\_back(pazymiai);}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{//egzamino paz}}
+\DoxyCodeLine{59     \textcolor{keywordtype}{int} getegz()}
+\DoxyCodeLine{60     \{}
+\DoxyCodeLine{61         \textcolor{keywordflow}{return} egz;}
+\DoxyCodeLine{62     \}}
+\DoxyCodeLine{63     \textcolor{keywordtype}{void} setegz(deque<int> egzaminas)}
+\DoxyCodeLine{64     \{}
+\DoxyCodeLine{65         egz = egzaminas.size()-\/1;}
+\DoxyCodeLine{66     \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68     \textcolor{comment}{//rezultatas}}
+\DoxyCodeLine{69     \textcolor{keywordtype}{double} getrezultatas()}
+\DoxyCodeLine{70     \{}
+\DoxyCodeLine{71         \textcolor{keywordflow}{return} rez;}
+\DoxyCodeLine{72     \}}
+\DoxyCodeLine{73     \textcolor{keywordtype}{void} setRez(\textcolor{keywordtype}{double} rezultatas)}
+\DoxyCodeLine{74     \{}
+\DoxyCodeLine{75         rez = rezultatas;}
+\DoxyCodeLine{76     \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \mbox{\hyperlink{class_mokinys2}{Mokinys2}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mokinys2}{Mokinys2}}\& t)}
+\DoxyCodeLine{79     \{}
+\DoxyCodeLine{80         \textcolor{comment}{//kopijavimo konstruktorius}}
+\DoxyCodeLine{81         \textcolor{comment}{//std::cout << "{}kopijavimo konstruktorius"{};}}
+\DoxyCodeLine{82     \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     \mbox{\hyperlink{class_mokinys2}{Mokinys2}}\& operator = (\textcolor{keyword}{const} \mbox{\hyperlink{class_mokinys2}{Mokinys2}}\& t)}
+\DoxyCodeLine{85     \{}
+\DoxyCodeLine{86         \textcolor{comment}{//assignment operatorius}}
+\DoxyCodeLine{87         \textcolor{comment}{//std::cout << "{}priskyrimo operatorius"{};}}
+\DoxyCodeLine{88         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \mbox{\hyperlink{class_mokinys2}{Mokinys2}}();}
+\DoxyCodeLine{92     \mbox{\hyperlink{class_mokinys2}{\string~Mokinys2}}();}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{keyword}{private}:}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \textcolor{keywordtype}{string} vardas, pavarde;}
+\DoxyCodeLine{97     deque<int> paz;}
+\DoxyCodeLine{98     \textcolor{keywordtype}{int} egz;                \textcolor{comment}{//kintamasis skirtas medianai ir vidurkiui laikyti}}
+\DoxyCodeLine{99     \textcolor{keywordtype}{double} rez = 0;}
+\DoxyCodeLine{100 \};}
+\DoxyCodeLine{101 }
+
+\end{DoxyCode}
