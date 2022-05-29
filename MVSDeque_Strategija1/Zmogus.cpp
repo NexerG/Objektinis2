@@ -1,5 +1,5 @@
 #include "Zmogus.h"
 
-void Zmogus::Zmogus1()
+void As()
 {
 }

@@ -26,6 +26,7 @@ public:
 	{
 		return vardas;
 	}
+
 	void setVar(string var)
 	{
 		vardas = var;
@@ -93,7 +94,7 @@ public:
 
 private:
 
-	string vardas, pavarde;
+	string vardas = "Mokinys", pavarde= "Pavardenis";
 	deque<int> paz;
 	int egz;				//kintamasis skirtas medianai ir vidurkiui laikyti
 	double rez = 0;
