@@ -29,7 +29,7 @@ void ivestis(deque<Mokinys2>& mok, int& ciklas, int ranka, ifstream& fs)
 		std::stringstream X(status);
 
 		std::getline(X, Nusk, ' ');
-		dummy.setPav(Nusk);
+		dummy.setVar(Nusk);
 
 		std::getline(X, Nusk, ' ');
 		dummy.setPav(Nusk);
@@ -40,7 +40,9 @@ void ivestis(deque<Mokinys2>& mok, int& ciklas, int ranka, ifstream& fs)
 		}
 		ciklas++;
 		dummy.setegz (dummy.getpazymiai());
+		cout << dummy.getVar() << " " << dummy.getPav() << endl;
 		mok.push_back(dummy);
+		cout << mok.back().getVar()<<endl;
 	}
 	cout << "Failo su " << mok.size() << " elementu nuskaitymo laikas: " << ((float)end - start) / CLOCKS_PER_SEC << "s" << endl;
 }

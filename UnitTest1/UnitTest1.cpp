@@ -24,5 +24,12 @@ namespace UnitTest1
 			Mokinys2 mc;
 			Assert::AreEqual(name, mc.getVar());
 		}
+
+		TEST_METHOD(TestMethod3)
+		{
+			std::string pavarde = "pavardenis";
+			Mokinys2 Mok;
+			Assert::AreEqual(pavarde, Mok.getPav());
+		}
 	};
 }

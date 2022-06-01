@@ -11,6 +11,7 @@ int main()
 {
 	Mokinys2 Bandymas;
 	Mokinys2 dummy(Bandymas);
+	
 
 	//Zmogus asd;
 

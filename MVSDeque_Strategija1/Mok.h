@@ -76,14 +76,20 @@ public:
 		rez = rezultatas;
 	}
 
-	Mokinys2(const Mokinys2& t)
+	Mokinys2(const Mokinys2& objektas)
 	{
+		*this = objektas;
 		//kopijavimo konstruktorius
 		//std::cout << "kopijavimo konstruktorius";
 	}
 
 	Mokinys2& operator = (const Mokinys2& t)
 	{
+		this->vardas = t.vardas;
+		this->pavarde = t.pavarde;
+		this->paz = t.paz;
+		this->egz = t.egz;
+		this->rez = t.rez;
 		//assignment operatorius
 		//std::cout << "priskyrimo operatorius";
 		return *this;
@@ -94,7 +100,7 @@ public:
 
 private:
 
-	string vardas = "Mokinys", pavarde= "Pavardenis";
+	string vardas= "Erikas", pavarde="pavardenis2";
 	deque<int> paz;
 	int egz;				//kintamasis skirtas medianai ir vidurkiui laikyti
 	double rez = 0;
